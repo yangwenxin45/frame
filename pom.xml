@@ -21,6 +21,8 @@
         <mysql.version>8.0.16</mysql.version>
         <commons-lang3.version>3.9</commons-lang3.version>
         <commons-collections4.version>4.4</commons-collections4.version>
+        <commons-dbutils.version>1.6</commons-dbutils.version>
+        <druid.version>1.1.20</druid.version>
     </properties>
 
     <dependencies>
@@ -93,6 +95,19 @@
             <version>${commons-collections4.version}</version>
         </dependency>
 
+        <!-- Apache Commons DbUtils -->
+        <dependency>
+            <groupId>commons-dbutils</groupId>
+            <artifactId>commons-dbutils</artifactId>
+            <version>${commons-dbutils.version}</version>
+        </dependency>
+
+        <!-- druid -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -1,11 +1,10 @@
 package net.yangwenxin.frame.service;
 
 import lombok.extern.slf4j.Slf4j;
+import net.yangwenxin.frame.helper.DatabaseHelper;
 import net.yangwenxin.frame.model.Customer;
 import net.yangwenxin.frame.util.PropsUtil;
 
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -45,35 +44,8 @@ public class CustomerService {
      * @Date 2019-9-18 15:08
      */
     public List<Customer> getCustomerList() {
-        Connection conn = null;
-        List<Customer> customerList = new ArrayList<>();
-        try {
-            String sql = "select * from customer";
-            conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                Customer customer = new Customer();
-                customer.setId(rs.getLong("id"));
-                customer.setName(rs.getString("name"));
-                customer.setContact(rs.getString("contact"));
-                customer.setTelephone(rs.getString("telephone"));
-                customer.setEmail(rs.getString("email"));
-                customer.setRemark(rs.getString("remark"));
-                customerList.add(customer);
-            }
-        } catch (SQLException e) {
-            log.error("execute sql failure", e);
-        } finally {
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    log.error("close connection failure", e);
-                }
-            }
-        }
-        return customerList;
+        String sql = "select * from customer";
+        return DatabaseHelper.queryEntityList(Customer.class, sql);
     }
 
     /**
@@ -83,8 +55,8 @@ public class CustomerService {
      * @Date 2019-9-18 15:09
      */
     public Customer getCustomer(long id) {
-        // TODO: 2019-9-18
-        return null;
+        String sql = "select * from customer where id = ?";
+        return DatabaseHelper.queryEntity(Customer.class, sql, id);
     }
 
     /**
@@ -94,8 +66,7 @@ public class CustomerService {
      * @Date 2019-9-18 15:10
      */
     public boolean createCustomer(Map<String, Object> fieldMap) {
-        // TODO: 2019-9-18
-        return false;
+        return DatabaseHelper.insertEntity(Customer.class, fieldMap);
     }
 
     /**
@@ -105,8 +76,7 @@ public class CustomerService {
      * @Date 2019-9-18 15:11
      */
     public boolean updateCustomer(long id, Map<String, Object> fieldMap) {
-        // TODO: 2019-9-18
-        return false;
+        return DatabaseHelper.updateEntity(Customer.class, id, fieldMap);
     }
 
     /**
@@ -116,7 +86,6 @@ public class CustomerService {
      * @Date 2019-9-18 15:11
      */
     public boolean deleteCustomer(long id) {
-        // TODO: 2019-9-18
-        return false;
+        return DatabaseHelper.deleteEntity(Customer.class, id);
     }
 }
