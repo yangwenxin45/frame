@@ -32,4 +32,14 @@ public class StringUtil {
     public static boolean isNotEmpty(String str) {
         return !isEmpty(str);
     }
+
+    /**
+     * 分隔固定格式的字符串
+     *
+     * @author yangwenxin
+     * @Date 2019-9-19 16:41
+     */
+    public static String[] splitString(String str, String separator) {
+        return StringUtils.splitByWholeSeparator(str, separator);
+    }
 }
