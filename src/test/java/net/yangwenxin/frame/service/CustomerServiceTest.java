@@ -1,5 +1,6 @@
 package net.yangwenxin.frame.service;
 
+import net.yangwenxin.frame.helper.DatabaseHelper;
 import net.yangwenxin.frame.model.Customer;
 import org.junit.Assert;
 import org.junit.Before;
@@ -19,7 +20,7 @@ public class CustomerServiceTest {
 
     @Before
     public void init() {
-        // TODO: 2019-9-18 初始化数据库
+        DatabaseHelper.executeSqlFile("sql/customer_init.sql");
     }
 
     @Test

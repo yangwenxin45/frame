@@ -9,6 +9,9 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,6 +25,9 @@ import java.util.Properties;
  * @author yangwenxin
  * @Date 2019-9-18 17:25
  */
+// TODO: 2019-9-18 待初始化实体集合和实体
+// TODO: 2019-9-18 通过注解获取表名和字段名
+// TODO: 2019-9-19 查询单体列表不需要传入sql
 @Slf4j
 public final class DatabaseHelper {
 
@@ -215,6 +221,24 @@ public final class DatabaseHelper {
         return entityClass.getSimpleName();
     }
 
-    // TODO: 2019-9-18 待初始化实体集合和实体
-    // TODO: 2019-9-18 通过注解获取表名和字段名
+    /**
+     * 执行SQL文件
+     *
+     * @author yangwenxin
+     * @Date 2019-9-18 19:28
+     */
+    public static void executeSqlFile(String filePath) {
+        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(filePath);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        try {
+            String sql;
+            while ((sql = reader.readLine()) != null) {
+                executeUpdate(sql);
+            }
+        } catch (Exception e) {
+            log.error("execute sql file failure", e);
+            throw new RuntimeException(e);
+        }
+
+    }
 }
