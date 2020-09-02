@@ -1,6 +1,8 @@
 package net.yangwenxin.frame.service;
 
 import lombok.extern.slf4j.Slf4j;
+import net.yangwenxin.frame.annotation.Service;
+import net.yangwenxin.frame.annotation.Transaction;
 import net.yangwenxin.frame.helper.DatabaseHelper;
 import net.yangwenxin.frame.model.Customer;
 
@@ -14,6 +16,7 @@ import java.util.Map;
  * @Date 2019-9-18 15:07
  */
 @Slf4j
+@Service
 public class CustomerService {
 
     /**
@@ -44,6 +47,7 @@ public class CustomerService {
      * @author yangwenxin
      * @Date 2019-9-18 15:10
      */
+    @Transaction
     public boolean createCustomer(Map<String, Object> fieldMap) {
         return DatabaseHelper.insertEntity(Customer.class, fieldMap);
     }
@@ -54,6 +58,7 @@ public class CustomerService {
      * @author yangwenxin
      * @Date 2019-9-18 15:11
      */
+    @Transaction
     public boolean updateCustomer(long id, Map<String, Object> fieldMap) {
         return DatabaseHelper.updateEntity(Customer.class, id, fieldMap);
     }
@@ -64,6 +69,7 @@ public class CustomerService {
      * @author yangwenxin
      * @Date 2019-9-18 15:11
      */
+    @Transaction
     public boolean deleteCustomer(long id) {
         return DatabaseHelper.deleteEntity(Customer.class, id);
     }

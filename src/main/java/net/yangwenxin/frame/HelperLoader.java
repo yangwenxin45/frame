@@ -1,9 +1,6 @@
 package net.yangwenxin.frame;
 
-import net.yangwenxin.frame.helper.BeanHelper;
-import net.yangwenxin.frame.helper.ClassHelper;
-import net.yangwenxin.frame.helper.ControllerHelper;
-import net.yangwenxin.frame.helper.IocHelper;
+import net.yangwenxin.frame.helper.*;
 import net.yangwenxin.frame.util.ClassUtil;
 
 /**
@@ -18,6 +15,7 @@ public final class HelperLoader {
         Class<?>[] classList = {
                 ClassHelper.class,
                 BeanHelper.class,
+                AopHelper.class,
                 IocHelper.class,
                 ControllerHelper.class
         };
