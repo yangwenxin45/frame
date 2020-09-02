@@ -1,6 +1,7 @@
 package net.yangwenxin.frame.bean;
 
 import net.yangwenxin.frame.util.CastUtil;
+import net.yangwenxin.frame.util.CollectionUtil;
 
 import java.util.Map;
 
@@ -36,5 +37,14 @@ public class Param {
      */
     public Map<String, Object> getMap() {
         return paramMap;
+    }
+
+    /**
+     * 验证参数是否为空
+     *
+     * @return
+     */
+    public boolean isEmpty() {
+        return CollectionUtil.isEmpty(paramMap);
     }
 }
