@@ -18,7 +18,7 @@
         <lombok.version>1.18.8</lombok.version>
         <junit.version>4.11</junit.version>
         <slf4j-log4j.version>1.7.25</slf4j-log4j.version>
-        <mysql.version>8.0.16</mysql.version>
+        <mysql.version>8.0.28</mysql.version>
         <commons-lang3.version>3.9</commons-lang3.version>
         <commons-collections4.version>4.4</commons-collections4.version>
         <commons-dbutils.version>1.6</commons-dbutils.version>
